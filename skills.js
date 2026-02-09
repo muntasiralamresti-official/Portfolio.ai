@@ -1,7 +1,3 @@
-// ==========================================
-// SKILLS SECTION - JAVASCRIPT CODE
-// স্কিল সেকশনের সম্পূর্ণ JavaScript কোড
-// ==========================================
 
 // ==========================================
 // 1. BASIC SETUP
@@ -61,43 +57,6 @@ const skillObserver = new IntersectionObserver((entries) => {
 skillCategories.forEach(category => {
     skillObserver.observe(category);
 });
-
-// ==========================================
-// 4. ALTERNATIVE METHOD (Without Observer)
-// বিকল্প পদ্ধতি - Scroll event দিয়ে
-// ==========================================
-
-/*
-// যদি Intersection Observer support না করে browser
-// তাহলে এই method use করতে পারেন:
-
-function animateSkillsOnScroll() {
-    skillCategories.forEach(category => {
-        // Element এর position check করা
-        const rect = category.getBoundingClientRect();
-        const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-        
-        if (isVisible && !category.classList.contains('in-view')) {
-            // Visible হলে animate করা
-            category.classList.add('in-view');
-            
-            const progressBars = category.querySelectorAll('.skill-progress');
-            progressBars.forEach((bar, index) => {
-                const progress = bar.getAttribute('data-progress');
-                setTimeout(() => {
-                    bar.style.width = progress + '%';
-                }, index * 100);
-            });
-        }
-    });
-}
-
-// Scroll event listener
-window.addEventListener('scroll', animateSkillsOnScroll);
-
-// Page load হলেও check করা
-window.addEventListener('load', animateSkillsOnScroll);
-*/
 
 // ==========================================
 // 5. MANUAL TRIGGER FUNCTION
@@ -259,56 +218,3 @@ console.log('- getAllSkillsData()         : Get all skills data as JSON');
 console.log('- addNewSkill(cat, name, level, progress) : Add new skill');
 console.log('- updateSkillProgress(cat, skill, progress) : Update progress');
 
-// ==========================================
-// TUTORIAL COMMENTS (শেখার জন্য)
-// ==========================================
-
-/*
-===========================================
-কিভাবে কাজ করে:
-===========================================
-
-1. INTERSECTION OBSERVER:
-   - Browser API যা detect করে কখন element viewport এ আসে
-   - Scroll event এর চেয়ে efficient
-   - threshold: 0.3 মানে 30% দেখা গেলে trigger
-
-2. DATA ATTRIBUTE:
-   - HTML এ data-progress="85" থাকে
-   - JavaScript এ getAttribute() দিয়ে নিয়ে আসি
-   - তারপর CSS width property set করি
-
-3. ANIMATION FLOW:
-   Scroll → Observer detect → Add 'in-view' class → 
-   CSS transition trigger → Width animate → Done
-
-4. DELAY/STAGGER:
-   - index * 100 means:
-     - 1st bar: 0ms delay
-     - 2nd bar: 100ms delay
-     - 3rd bar: 200ms delay
-   - এতে একটার পর একটা animate হয়
-
-5. PERFORMANCE:
-   - একবার animate হলে unobserve() করি
-   - Memory leak prevent করে
-   - Smooth performance
-
-===========================================
-Common Issues & Solutions:
-===========================================
-
-Issue 1: Progress bars not animating
-Solution: Check if .skill-progress has data-progress attribute
-
-Issue 2: All bars animate at once
-Solution: Check the setTimeout index multiplier
-
-Issue 3: Animation too fast/slow
-Solution: Change transition duration in CSS (1.5s)
-
-Issue 4: Not working on scroll
-Solution: Check threshold value (try 0.1 to 0.5)
-
-===========================================
-*/

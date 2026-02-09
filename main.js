@@ -1,19 +1,3 @@
-// ==========================================
-// MUNTASIR'S PORTFOLIO - JAVASCRIPT
-// ==========================================
-//
-// এই ফাইলে আছে:
-// 1. Custom Cursor (কাস্টম কার্সার)
-// 2. 3D Tilt Card Effect (৩ডি কার্ড ইফেক্ট)
-// 3. Scroll Animations (স্ক্রোল এনিমেশন)
-// 4. Certificate Modal (সার্টিফিকেট পপআপ)
-// 5. Project Modal System (প্রজেক্ট মোডাল)
-// ==========================================
-
-// ==========================================
-// 1. CUSTOM CURSOR
-// কাস্টম কার্সার - মাউস ফলো করবে
-// ==========================================
 
 // Cursor elements select করা
 const cursor = document.querySelector('.cursor');
@@ -168,142 +152,51 @@ certItems.forEach(item => {
 // Project data - এখানে সব project এর info আছে
 const projectData = {
     1: {
-        title: "Modern Shopping Experience",
-        subtitle: "E-Commerce Mobile Application Design",
-        sections: [
-            {
-                label: "Home Screen",
-                description: "Clean, minimal interface with featured products and seamless navigation. Focus on product imagery and easy discovery.",
-                mockups: 2
-            },
-            {
-                label: "Product Details",
-                description: "Immersive product view with high-quality images, detailed specifications, and intuitive add-to-cart functionality.",
-                mockups: 2
-            },
-            {
-                label: "Checkout Flow",
-                description: "Streamlined checkout process with progress indicators, multiple payment options, and order confirmation.",
-                mockups: 3
-            }
-        ]
+        title: "EduWave Learning Platform",
+        subtitle: "Online Learning UI Design",
+        images: ["Edu- 1.jpg"] // full design image
     },
     2: {
-        title: "Analytics Platform",
-        subtitle: "SaaS Dashboard for Data Visualization",
-        sections: [
-            {
-                label: "Overview Dashboard",
-                description: "Real-time metrics with interactive charts and KPI cards. Dark mode optimized for long viewing sessions.",
-                mockups: 1
-            },
-            {
-                label: "Data Tables",
-                description: "Advanced filtering, sorting, and export capabilities with responsive table design.",
-                mockups: 2
-            },
-            {
-                label: "Custom Reports",
-                description: "Drag-and-drop report builder with customizable widgets and visualization options.",
-                mockups: 2
-            }
-        ]
+        title: "Modern Fashion Website",
+        subtitle: "Fashion Landing Page Design",
+        images: ["Fashion Brand.png"]
     },
     3: {
-        title: "Community Platform",
-        subtitle: "Social Media Mobile Application",
-        sections: [
-            {
-                label: "Feed & Stories",
-                description: "Instagram-inspired feed with stories, likes, comments, and smooth scrolling interactions.",
-                mockups: 2
-            },
-            {
-                label: "Profile & Settings",
-                description: "User profile with customizable themes, privacy controls, and content management.",
-                mockups: 2
-            },
-            {
-                label: "Messaging",
-                description: "Real-time chat interface with media sharing, reactions, and group conversations.",
-                mockups: 2
-            }
-        ]
-    },
-    4: {
-        title: "Product Launch",
-        subtitle: "High-Converting Landing Page Design",
-        sections: [
-            {
-                label: "Hero Section",
-                description: "Attention-grabbing hero with clear value proposition, compelling visuals, and primary CTA.",
-                mockups: 1
-            },
-            {
-                label: "Features Showcase",
-                description: "Interactive feature cards with icons, animations, and detailed explanations of benefits.",
-                mockups: 2
-            },
-            {
-                label: "Social Proof",
-                description: "Testimonials, client logos, case studies, and trust indicators to drive conversions.",
-                mockups: 2
-            }
-        ]
+        title: "Real Estate Website",
+        subtitle: "Property Platform UI",
+        images: ["Elan Estate.png"]
     }
 };
 
 // সব project card select করা
 const projectCards = document.querySelectorAll('.project-card');
 
-// প্রতিটি card এ click listener add করা
 projectCards.forEach(card => {
     card.addEventListener('click', () => {
-        // কোন project click করা হয়েছে সেটা নেয়া
         const projectId = card.getAttribute('data-project');
         const project = projectData[projectId];
-        
-        // Modal তৈরি করা
+
         const modal = document.createElement('div');
         modal.className = 'project-modal';
-        
-        // Close button তৈরি
+
         const closeBtn = document.createElement('div');
         closeBtn.className = 'modal-close';
         closeBtn.innerHTML = '✕';
-        
-        // Close button এ click করলে modal close
-        closeBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
+
+        closeBtn.addEventListener('click', () => {
             modal.classList.remove('active');
             setTimeout(() => modal.remove(), 500);
         });
-        
-        // Project sections এর HTML তৈরি
-        let sectionsHTML = '';
-        project.sections.forEach(section => {
-            // প্রতিটি section এর জন্য mockup তৈরি
-            let mockupsHTML = '';
-            for (let i = 0; i < section.mockups; i++) {
-                mockupsHTML += `
-                    <div class="mockup-item">
-                        <div class="mockup-placeholder">📱</div>
-                    </div>
-                `;
-            }
-            
-            // Section HTML add করা
-            sectionsHTML += `
-                <div class="design-section" data-section="${section.label}">
-                    <p class="design-description">${section.description}</p>
-                    <div class="mockup-grid">
-                        ${mockupsHTML}
-                    </div>
+
+        let imagesHTML = '';
+        project.images.forEach(img => {
+            imagesHTML += `
+                <div class="mockup-item">
+                    <img src="${img}" class="full-design" />
                 </div>
             `;
         });
-        
-        // Modal content তৈরি
+
         const content = document.createElement('div');
         content.className = 'modal-content';
         content.innerHTML = `
@@ -312,37 +205,22 @@ projectCards.forEach(card => {
                 <p class="modal-subtitle">${project.subtitle}</p>
             </div>
             <div class="design-showcase">
-                ${sectionsHTML}
+                <div class="design-section" data-section="Full Design">
+                    <div class="mockup-grid">
+                        ${imagesHTML}
+                    </div>
+                </div>
             </div>
         `;
-        
-        // Modal এ সব add করা
+
         modal.appendChild(closeBtn);
         modal.appendChild(content);
         document.body.appendChild(modal);
-        
-        // Modal activate করা (animation এর জন্য)
+
         setTimeout(() => modal.classList.add('active'), 10);
-        
-        // Background এ click করলে close হবে
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.classList.remove('active');
-                setTimeout(() => modal.remove(), 500);
-            }
-        });
-        
-        // ESC key press করলে close হবে
-        const escHandler = (e) => {
-            if (e.key === 'Escape') {
-                modal.classList.remove('active');
-                setTimeout(() => modal.remove(), 500);
-                document.removeEventListener('keydown', escHandler);
-            }
-        };
-        document.addEventListener('keydown', escHandler);
     });
 });
+
 
 // ==========================================
 // CONSOLE MESSAGE

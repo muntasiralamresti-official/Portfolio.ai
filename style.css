@@ -23,12 +23,12 @@
    কাস্টম ভ্যারিয়েবল - সহজে রঙ পরিবর্তন করতে
 ========================================== */
 :root {
-    --deep-void: #050505;          /* মূল ব্যাকগ্রাউন্ড কালো */
-    --liquid-gold: #589413;        /* সোনালি রঙ */
-    --electric-cyan: #105881;      /* সায়ান নীল */
-    --neon-purple: #C77DFF;        /* বেগুনি */
-    --glass-white: rgba(255, 255, 255, 0.03);  /* গ্লাস ইফেক্ট */
-    --glow-intensity: 40px;        /* গ্লো সাইজ */
+    --deep-void: #050505;          
+    --liquid-gold: #589413;        
+    --electric-cyan: #105881;  
+    --neon-purple: #C77DFF;       
+    --glass-white: rgba(255, 255, 255, 0.03); 
+    --glow-intensity: 40px;        
 }
 
 /* ==========================================
@@ -50,7 +50,7 @@ body {
     font-family: "Poppins", sans-serif;
     background: var(--deep-void);
     color: #fff;
-    cursor: none;  /* ডিফল্ট কার্সার হাইড */
+    cursor: none;  
     overflow-x: hidden;
     position: relative;
 }
@@ -974,6 +974,13 @@ section {
 .modal-content::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 184, 0, 0.5);
 }
+.full-design {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    object-fit: contain;
+}
+
 
 /* ==========================================
    11. CERTIFICATES - Masonry Grid
