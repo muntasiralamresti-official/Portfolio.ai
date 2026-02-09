@@ -1,0 +1,1517 @@
+/* ==========================================
+   MUNTASIR'S PORTFOLIO - CUSTOM CSS
+   ==========================================
+   
+   এই ফাইলে আছে:
+   1. CSS Variables (রঙ এবং সেটিংস)
+   2. Base Styles (মূল স্টাইল)
+   3. Cursor Effects (কাস্টম কার্সার)
+   4. Background Effects (ব্যাকগ্রাউন্ড এনিমেশন)
+   5. Navigation (নেভিগেশন মেনু)
+   6. Hero Section (প্রথম সেকশন)
+   7. Expertise Cards (দক্ষতার কার্ড)
+   8. Timeline (যাত্রার টাইমলাইন)
+   9. Projects (প্রজেক্ট শোকেস)
+   10. Certificates (সার্টিফিকেট)
+   11. Skills (স্কিল অর্ব)
+   12. Footer (ফুটার)
+   13. Responsive (মোবাইল ভিউ)
+========================================== */
+
+/* ==========================================
+   1. CSS VARIABLES
+   কাস্টম ভ্যারিয়েবল - সহজে রঙ পরিবর্তন করতে
+========================================== */
+:root {
+    --deep-void: #050505;          /* মূল ব্যাকগ্রাউন্ড কালো */
+    --liquid-gold: #589413;        /* সোনালি রঙ */
+    --electric-cyan: #105881;      /* সায়ান নীল */
+    --neon-purple: #C77DFF;        /* বেগুনি */
+    --glass-white: rgba(255, 255, 255, 0.03);  /* গ্লাস ইফেক্ট */
+    --glow-intensity: 40px;        /* গ্লো সাইজ */
+}
+
+/* ==========================================
+   2. BASE STYLES
+   মূল স্টাইল - সব পেজের জন্য
+========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background: var(--deep-void);
+    color: #fff;
+    cursor: none;  /* ডিফল্ট কার্সার হাইড */
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ==========================================
+   3. CUSTOM CURSOR
+   কাস্টম কার্সার ইফেক্ট
+========================================== */
+.cursor {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--liquid-gold);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 10000;
+    transition: all 0.15s ease;
+    mix-blend-mode: difference;
+}
+
+.cursor-follower {
+    width: 50px;
+    height: 50px;
+    border: 1px solid rgba(255, 184, 0, 0.3);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: all 0.4s cubic-bezier(0.75, -0.27, 0.3, 1.33);
+    mix-blend-mode: difference;
+}
+
+/* ==========================================
+   4. LIQUID BACKGROUND
+   এনিমেটেড ব্যাকগ্রাউন্ড ব্লব
+========================================== */
+.liquid-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.4;
+    animation: float-blob 20s infinite ease-in-out;
+}
+
+.blob-1 {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--liquid-gold), transparent);
+    top: -300px;
+    left: -200px;
+    animation-delay: 0s;
+}
+
+.blob-2 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, var(--electric-cyan), transparent);
+    bottom: -200px;
+    right: -150px;
+    animation-delay: 5s;
+}
+
+.blob-3 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, var(--neon-purple), transparent);
+    top: 50%;
+    right: 20%;
+    animation-delay: 10s;
+}
+
+/* Blob Float Animation */
+@keyframes float-blob {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(100px, -50px) scale(1.1); }
+    50% { transform: translate(-50px, 100px) scale(0.9); }
+    75% { transform: translate(80px, 50px) scale(1.05); }
+}
+
+/* Grain Overlay - Texture Effect */
+.grain-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* ==========================================
+   5. NAVIGATION
+   টপ নেভিগেশন বার
+========================================== */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 30px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(5, 5, 5, 0.7);
+    backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, var(--liquid-gold), var(--electric-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-style: italic;
+}
+
+.nav-items {
+    display: flex;
+    gap: 50px;
+    list-style: none;
+}
+
+.nav-items a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    position: relative;
+    transition: color 0.3s;
+}
+
+/* Underline Animation on Hover */
+.nav-items a::before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--liquid-gold);
+    transition: width 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: 0 0 10px var(--liquid-gold);
+}
+
+.nav-items a:hover {
+    color: #fff;
+}
+
+.nav-items a:hover::before {
+    width: 100%;
+}
+
+/* ==========================================
+   6. HERO SECTION
+   প্রথম/হিরো সেকশন
+========================================== */
+.container {
+    position: relative;
+    z-index: 2;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 200px;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 80px;
+    align-items: center;
+    width: 100%;
+}
+
+.hero-text {
+    position: relative;
+}
+
+/* Badge with Pulse Effect */
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 20px;
+    background: rgba(255, 184, 0, 0.1);
+    border: 1px solid rgba(255, 184, 0, 0.3);
+    border-radius: 50px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--liquid-gold);
+    margin-bottom: 40px;
+    animation: pulse-glow 2s infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(255, 184, 0, 0.3); }
+    50% { box-shadow: 0 0 40px rgba(255, 184, 0, 0.6); }
+}
+
+/* Blinking Dot */
+.hero-badge::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--liquid-gold);
+    border-radius: 50%;
+    animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+.hero h1 {
+    font-size: 48px;
+    line-height: 1.5;
+    margin-bottom: 30px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+/* Animated Gradient Text */
+.liquid-text {
+    background: linear-gradient(
+        120deg,
+        var(--liquid-gold) 0%,
+        var(--electric-cyan) 50%,
+        var(--neon-purple) 100%
+    );
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: liquid-flow 4s ease infinite;
+}
+
+@keyframes liquid-flow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.hero-description {
+    font-size: 18px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.5);
+    max-width: 500px;
+    margin-bottom: 50px;
+    font-weight: 400;
+}
+
+/* CTA Buttons */
+.cta-group {
+    display: flex;
+    gap: 20px;
+}
+
+.cta-primary,
+.cta-secondary {
+    padding: 18px 40px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-primary {
+    background: linear-gradient(135deg, var(--liquid-gold), var(--electric-cyan));
+    color: #000;
+    border: none;
+    box-shadow: 0 10px 40px rgba(255, 184, 0, 0.4);
+}
+
+.cta-primary:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 60px rgba(255, 184, 0, 0.6);
+}
+
+.cta-secondary {
+    background: transparent;
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.cta-secondary:hover {
+    border-color: var(--liquid-gold);
+    background: rgba(255, 184, 0, 0.1);
+    transform: translateY(-5px);
+}
+
+/* 3D Tilt Card */
+.hero-card {
+    perspective: 1000px;
+    position: relative;
+}
+
+.card-inner {
+    width: 100%;
+    height: 600px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.1s;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(20px);
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+}
+
+.card-inner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 184, 0, 0.1), rgba(0, 255, 247, 0.1));
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.card-inner:hover::before {
+    opacity: 1;
+}
+
+.card-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 30px;
+}
+
+/* ==========================================
+   7. SECTIONS - COMMON STYLES
+   সব সেকশনের কমন স্টাইল
+========================================== */
+section {
+    position: relative;
+    padding: 150px 0;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+.section-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--liquid-gold);
+    margin-bottom: 20px;
+    display: block;
+}
+
+.section-title {
+    font-size: clamp(40px, 5vw, 72px);
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1.1;
+}
+
+/* ==========================================
+   8. EXPERTISE CARDS
+   দক্ষতার কার্ডগুলো - Horizontal Scroll
+========================================== */
+.expertise-scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    display: flex;
+    gap: 30px;
+    padding: 40px 0;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.expertise-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.expertise-card {
+    min-width: 400px;
+    height: 500px;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 30px;
+    padding: 50px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Rotating Gradient Border */
+.expertise-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+        from 0deg,
+        transparent 0%,
+        var(--liquid-gold) 25%,
+        transparent 50%,
+        var(--electric-cyan) 75%,
+        transparent 100%
+    );
+    animation: rotate-gradient 4s linear infinite;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.expertise-card:hover::before {
+    opacity: 0.1;
+}
+
+@keyframes rotate-gradient {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.expertise-card:hover {
+    transform: translateY(-20px) scale(1.02);
+    border-color: rgba(255, 184, 0, 0.3);
+    box-shadow: 0 30px 80px rgba(255, 184, 0, 0.3);
+}
+
+.card-icon {
+    font-size: 64px;
+    margin-bottom: 30px;
+    display: block;
+    filter: drop-shadow(0 0 20px currentColor);
+}
+
+.card-number {
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    color: var(--liquid-gold);
+    margin-bottom: 20px;
+    opacity: 0.6;
+}
+
+.card-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+}
+
+.card-desc {
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.7;
+    font-size: 15px;
+}
+
+/* ==========================================
+   9. TIMELINE - Journey Section
+   যাত্রার টাইমলাইন
+========================================== */
+.timeline-container {
+    position: relative;
+    padding: 60px 0;
+}
+
+.timeline-path {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--liquid-gold), var(--electric-cyan), var(--neon-purple));
+    transform: translateX(-50%) rotate(2deg);
+}
+
+.timeline-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    margin-bottom: 120px;
+    position: relative;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+    grid-column: 2;
+}
+
+.timeline-item:nth-child(even) .timeline-visual {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.timeline-content {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 30px;
+    padding: 50px;
+    position: relative;
+    transform: translateY(50px);
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.timeline-item.in-view .timeline-content {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.phase {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    border-radius: 50px;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.phase-achieved {
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    color: #00FF00;
+}
+
+.phase-current {
+    background: rgba(255, 184, 0, 0.1);
+    border: 1px solid rgba(255, 184, 0, 0.3);
+    color: var(--liquid-gold);
+}
+
+.phase-future {
+    background: rgba(0, 255, 247, 0.1);
+    border: 1px solid rgba(0, 255, 247, 0.3);
+    color: var(--electric-cyan);
+}
+
+.timeline-title {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    letter-spacing: -1px;
+}
+
+.timeline-desc {
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.8;
+}
+
+.timeline-visual {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 184, 0, 0.05), rgba(0, 255, 247, 0.05));
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 120px;
+    opacity: 0.3;
+}
+
+/* ==========================================
+   10. PROJECTS SECTION
+   প্রজেক্ট শোকেস
+========================================== */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.project-card {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 30px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 184, 0, 0.1), rgba(0, 255, 247, 0.1));
+    opacity: 0;
+    transition: opacity 0.5s;
+    z-index: 1;
+}
+
+.project-card:hover::before {
+    opacity: 1;
+}
+
+.project-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    border-color: rgba(255, 184, 0, 0.3);
+    box-shadow: 0 40px 100px rgba(255, 184, 0, 0.4);
+}
+
+.project-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(255, 184, 0, 0.05), rgba(0, 255, 247, 0.05));
+}
+
+.project-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.project-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.project-icon {
+    font-size: 80px;
+    filter: drop-shadow(0 0 30px rgba(255, 184, 0, 0.5));
+    animation: float-gentle 3s ease-in-out infinite;
+}
+
+@keyframes float-gentle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+.project-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--liquid-gold);
+    padding: 8px 20px;
+    background: rgba(255, 184, 0, 0.1);
+    border: 1px solid rgba(255, 184, 0, 0.3);
+    border-radius: 50px;
+}
+
+.project-info {
+    padding: 30px;
+    position: relative;
+    z-index: 2;
+}
+
+.project-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+}
+
+.project-desc {
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.7;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tag {
+    padding: 6px 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    font-size: 11px;
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.project-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.9), transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.5s;
+    z-index: 3;
+}
+
+.project-card:hover .project-overlay {
+    opacity: 1;
+}
+
+.view-text {
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: var(--liquid-gold);
+    text-transform: uppercase;
+}
+
+/* ==========================================
+   PROJECT MODAL
+   প্রজেক্ট ফুল ভিউ মোডাল
+========================================== */
+.project-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(5, 5, 5, 0.98);
+    backdrop-filter: blur(30px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.project-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    max-width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: slideUpFade 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes slideUpFade {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-close {
+    position: fixed;
+    top: 40px;
+    right: 40px;
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    z-index: 10001;
+    font-size: 24px;
+}
+
+.modal-close:hover {
+    background: var(--liquid-gold);
+    color: #000;
+    transform: rotate(90deg);
+}
+
+.modal-header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 0 20px;
+}
+
+.modal-title {
+    font-size: 48px;
+    font-weight: 800;
+    margin-bottom: 15px;
+    letter-spacing: -2px;
+}
+
+.modal-subtitle {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 16px;
+}
+
+.design-showcase {
+    display: grid;
+    gap: 40px;
+    padding: 0 20px;
+}
+
+.design-section {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 30px;
+    padding: 50px;
+    position: relative;
+}
+
+.design-section::before {
+    content: attr(data-section);
+    position: absolute;
+    top: -15px;
+    left: 30px;
+    padding: 8px 20px;
+    background: rgba(255, 184, 0, 0.1);
+    border: 1px solid rgba(255, 184, 0, 0.3);
+    border-radius: 50px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--liquid-gold);
+}
+
+.design-description {
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.8;
+    font-size: 15px;
+}
+
+.mockup-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.mockup-item {
+    background: linear-gradient(135deg, rgba(255, 184, 0, 0.05), rgba(0, 255, 247, 0.05));
+    border-radius: 20px;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.mockup-placeholder {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 80px;
+}
+
+/* Custom Scrollbar */
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: rgba(255, 184, 0, 0.3);
+    border-radius: 10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 184, 0, 0.5);
+}
+
+/* ==========================================
+   11. CERTIFICATES - Masonry Grid
+   সার্টিফিকেট ভল্ট
+========================================== */
+.cert-masonry {
+    columns: 3;
+    column-gap: 30px;
+}
+
+.cert-item {
+    break-inside: avoid;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.cert-item:hover {
+    transform: scale(1.05) rotate(-2deg);
+    z-index: 10;
+}
+
+.cert-item img {
+    width: 100%;
+    display: block;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.5s;
+}
+
+.cert-item:hover img {
+    box-shadow: 0 30px 100px rgba(255, 184, 0, 0.5);
+}
+
+.cert-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.9), transparent);
+    padding: 30px;
+    transform: translateY(100%);
+    transition: transform 0.5s;
+}
+
+.cert-item:hover .cert-overlay {
+    transform: translateY(0);
+}
+
+.cert-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.cert-issuer {
+    font-size: 13px;
+    color: var(--liquid-gold);
+    font-family: 'Space Mono', monospace;
+}
+
+/* ==========================================
+   12. SKILLS - Constellation
+   স্কিল কনস্টেলেশন
+========================================== */
+/* ==========================================
+   SKILLS SECTION - CSS CODE
+   স্কিল সেকশনের সম্পূর্ণ CSS কোড
+========================================== */
+
+/* Main Skills Container */
+.skills-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Individual Skill Category Card */
+.skill-category {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 30px;
+    padding: 40px;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Rotating Gradient Border Effect */
+.skill-category::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+        from 0deg,
+        transparent 0%,
+        var(--liquid-gold) 25%,
+        transparent 50%,
+        var(--electric-cyan) 75%,
+        transparent 100%
+    );
+    animation: rotate-gradient 8s linear infinite;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+/* Rotation Animation */
+@keyframes rotate-gradient {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Show gradient on hover */
+.skill-category:hover::before {
+    opacity: 0.05;
+}
+
+/* Card Hover Effect */
+.skill-category:hover {
+    transform: translateY(-10px);
+    border-color: rgba(255, 184, 0, 0.2);
+    box-shadow: 0 20px 60px rgba(255, 184, 0, 0.2);
+}
+
+/* Category Header (Icon + Title) */
+.category-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Category Icon Styling */
+.category-icon {
+    font-size: 40px;
+    filter: drop-shadow(0 0 20px rgba(255, 184, 0, 0.3));
+}
+
+/* Category Title */
+.category-title {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+/* Skills List Container */
+.skills-list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Individual Skill Item */
+.skill-item {
+    position: relative;
+}
+
+/* Skill Info Row (Name + Level) */
+.skill-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Skill Name */
+.skill-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+}
+
+/* Skill Level Badge */
+.skill-level {
+    font-size: 12px;
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--liquid-gold);
+    padding: 4px 12px;
+    background: rgba(255, 184, 0, 0.1);
+    border: 1px solid rgba(255, 184, 0, 0.2);
+    border-radius: 20px;
+}
+
+/* Progress Bar Background */
+.skill-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Progress Bar Fill */
+.skill-progress {
+    height: 100%;
+    background: linear-gradient(90deg, var(--liquid-gold), var(--electric-cyan));
+    border-radius: 10px;
+    width: 0; /* Start at 0, animate to percentage */
+    transition: width 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    position: relative;
+}
+
+/* Shimmer Effect on Progress Bar */
+.skill-progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 30px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3));
+    animation: shimmer 2s infinite;
+}
+
+/* Shimmer Animation */
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Progress Width Classes - Triggered by JavaScript */
+.skill-category.in-view .skill-progress[data-progress="95"] { width: 95%; }
+.skill-category.in-view .skill-progress[data-progress="92"] { width: 92%; }
+.skill-category.in-view .skill-progress[data-progress="90"] { width: 90%; }
+.skill-category.in-view .skill-progress[data-progress="88"] { width: 88%; }
+.skill-category.in-view .skill-progress[data-progress="85"] { width: 85%; }
+.skill-category.in-view .skill-progress[data-progress="80"] { width: 80%; }
+.skill-category.in-view .skill-progress[data-progress="78"] { width: 78%; }
+.skill-category.in-view .skill-progress[data-progress="75"] { width: 75%; }
+.skill-category.in-view .skill-progress[data-progress="72"] { width: 72%; }
+.skill-category.in-view .skill-progress[data-progress="70"] { width: 70%; }
+.skill-category.in-view .skill-progress[data-progress="65"] { width: 65%; }
+.skill-category.in-view .skill-progress[data-progress="60"] { width: 60%; }
+
+/* ==========================================
+   RESPONSIVE DESIGN
+========================================== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .skills-categories {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .skills-categories {
+        grid-template-columns: 1fr;
+    }
+    
+    .skill-category {
+        padding: 30px 25px;
+    }
+    
+    .category-title {
+        font-size: 20px;
+    }
+    
+    .category-icon {
+        font-size: 32px;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+    .skill-category {
+        padding: 25px 20px;
+    }
+    
+    .skill-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .skill-name {
+        font-size: 14px;
+    }
+}
+
+
+/* ==========================================
+   13. FOOTER
+   ফুটার সেকশন
+========================================== */
+footer {
+    padding: 100px 60px 60px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+}
+
+.footer-title {
+    font-size: 56px;
+    font-weight: 800;
+    margin-bottom: 40px;
+    letter-spacing: -2px;
+}
+
+.social-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 60px;
+}
+
+.social-link {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    font-size: 24px;
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.social-link:hover {
+    background: var(--liquid-gold);
+    color: #000;
+    transform: translateY(-10px) rotate(360deg);
+    box-shadow: 0 20px 60px rgba(255, 184, 0, 0.6);
+}
+
+.footer-note {
+    color: rgba(255, 255, 255, 0.3);
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+/* ==========================================
+   14. RESPONSIVE DESIGN
+   মোবাইল এবং ট্যাবলেট ভিউ
+========================================== */
+
+/* Tablet View */
+@media (max-width: 1024px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+    
+    .card-inner {
+        height: 400px;
+    }
+    
+    .expertise-card {
+        min-width: 350px;
+    }
+    
+    .timeline-item {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .timeline-item:nth-child(even) .timeline-content,
+    .timeline-item:nth-child(even) .timeline-visual {
+        grid-column: 1;
+    }
+    
+    .cert-masonry {
+        columns: 2;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Mobile View */
+@media (max-width: 768px) {
+    body {
+        cursor: default;
+    }
+    
+    .cursor,
+    .cursor-follower {
+        display: none;
+    }
+    
+    nav {
+        padding: 20px 30px;
+    }
+    
+    .nav-items {
+        display: none;
+    }
+    
+    .hero h1 {
+        font-size: 42px;
+    }
+    
+    .section-title {
+        font-size: 36px;
+    }
+    
+    .expertise-card {
+        min-width: 300px;
+        height: 450px;
+        padding: 40px;
+    }
+    
+    .cert-masonry {
+        columns: 1;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .project-image-wrapper {
+        height: 250px;
+    }
+    
+    .modal-close {
+        top: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+    }
+    
+    .modal-title {
+        font-size: 32px;
+    }
+    
+    .design-section {
+        padding: 30px 20px;
+    }
+    
+    .mockup-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .container {
+        padding: 0 20px;
+    }
+}
+
+
+/* About */
+.about-section {
+  padding: 100px 20px;
+}
+
+.about-container {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.code-card {
+  background: #111;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.code-header {
+  background: #2a2a2a;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.red { background: #ff5f56; }
+.yellow { background: #ffbd2e; }
+.green { background: #27c93f; }
+
+.file-name {
+  margin-left: 10px;
+  color: #ccc;
+  font-size: 14px;
+}
+
+.code-content {
+  padding: 20px;
+  color: #9cdcfe;
+  font-family: monospace;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.about-text {
+  color: #ccc;
+}
+
+.about-title {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.highlight {
+  color: #00e5ff;
+}
+
+.about-text p {
+  margin-bottom: 16px;
+  line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+  .about-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .about-title {
+    font-size: 28px;
+  }
+}
